@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Live Quiz — Online Assessment</title>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <div class="wrap">
+    <header class="topbar">
+      <span class="brand"><span class="dot"></span> <span id="playerName">Player</span></span>
+      <span class="live-chip"><span class="ld"></span> Score: <span id="scoreLive">0</span></span>
+    </header>
+
+    <main style="max-width:640px; margin:0 auto; padding:20px 0 80px;">
+
+      <div class="row" style="justify-content:space-between; align-items:flex-start;">
+        <div>
+          <p class="muted small" style="text-transform:uppercase; letter-spacing:.1em;">Question <span id="qIndex">1</span> of <span id="qTotal">1</span></p>
+          <div class="progress-dots mt-8" id="progressDots"></div>
+        </div>
+        <div class="timer-ring" id="timerRing">
+          <svg width="110" height="110">
+            <circle class="track" cx="55" cy="55" r="48"></circle>
+            <circle class="bar" cx="55" cy="55" r="48"></circle>
+          </svg>
+          <div class="num" id="timerNum">--</div>
+        </div>
+      </div>
+
+      <div class="q-stage mt-24">
+        <div id="qBlock" class="q-slide">
+          <h2 id="qText" style="font-size:1.5rem; line-height:1.3;"></h2>
+          <div id="optionsWrap" class="stack gap-12 mt-24"></div>
+        </div>
+      </div>
+
+      <!-- ================= WAITING FOR NEXT ================= -->
+      <div id="waitingBlock" class="hidden" style="text-align:center; padding:60px 0;">
+        <div class="center">
+          <div class="pulse-orb">
+            <span class="ring"></span><span class="ring"></span><span class="ring"></span><span class="ring"></span>
+            <div class="core"></div>
+          </div>
+        </div>
+        <h2 id="waitTitle" class="mt-24" style="font-size:1.4rem;">Locked in!</h2>
+        <p id="waitSub" class="mt-8">Waiting for the rest of the class…</p>
+      </div>
+
+    </main>
+  </div>
+
+  <script src="js/firebase-config.js"></script>
+  <script src="js/quiz.js"></script>
+</body>
+</html>

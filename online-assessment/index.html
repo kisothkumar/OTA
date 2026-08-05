@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Online Assessment — Live Classroom Quizzes</title>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <div class="wrap">
+    <header class="topbar">
+      <div class="brand"><span class="dot"></span> Online&nbsp;Assessment</div>
+      <div class="live-chip"><span class="ld"></span> Live sync ready</div>
+    </header>
+
+    <main>
+      <section class="hero" style="padding:64px 0 40px; display:flex; flex-wrap:wrap; gap:56px; align-items:center;">
+        <div style="flex:1 1 420px;">
+          <div class="reveal" style="animation-delay:.05s;">
+            <span class="live-chip" style="margin-bottom:18px;"><span class="ld"></span> Broadcasting in real time</span>
+          </div>
+          <h1 class="reveal" style="font-size:clamp(2.4rem,5vw,3.6rem); line-height:1.05; margin-top:18px; animation-delay:.12s;">
+            Turn any classroom into a<br><span class="text-amber">live signal.</span>
+          </h1>
+          <p class="reveal" style="font-size:1.1rem; max-width:480px; margin-top:20px; animation-delay:.2s;">
+            One teacher, one room code, every student's screen moving in lockstep. Questions land the instant you push them. Scores climb the instant an answer's locked in.
+          </p>
+          <div class="reveal row gap-16 mt-32" style="animation-delay:.3s; flex-wrap:wrap;">
+            <a class="btn btn-primary" href="teacher.html">Start a live quiz</a>
+            <a class="btn btn-ghost" href="student.html">Join with a code</a>
+          </div>
+          <div class="reveal row gap-24 mt-48 small muted" style="animation-delay:.4s;">
+            <span>No installs</span><span>·</span><span>Works on any device</span><span>·</span><span>Free forever</span>
+          </div>
+        </div>
+
+        <div style="flex:1 1 280px; display:flex; justify-content:center;">
+          <div class="reveal" style="animation-delay:.15s;">
+            <div class="pulse-orb" style="width:260px; height:260px;">
+              <span class="ring"></span><span class="ring"></span><span class="ring"></span><span class="ring"></span>
+              <div class="core" style="width:88px; height:88px;"></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="mt-48" style="display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:18px; padding-bottom:80px;">
+        <div class="card reveal" style="padding:26px; animation-delay:.1s;">
+          <div class="text-teal" style="font-family:var(--font-mono); font-weight:700;">01</div>
+          <h3 class="mt-16" style="font-size:1.1rem;">Build in minutes</h3>
+          <p class="mt-8 small">Draft questions, set a timer per question, and generate a room code — no accounts required.</p>
+        </div>
+        <div class="card reveal" style="padding:26px; animation-delay:.18s;">
+          <div class="text-violet" style="font-family:var(--font-mono); font-weight:700; color:var(--violet);">02</div>
+          <h3 class="mt-16" style="font-size:1.1rem;">Students join instantly</h3>
+          <p class="mt-8 small">A five-character code and a name — that's the whole flow. Their tile appears on your dashboard the moment they land.</p>
+        </div>
+        <div class="card reveal" style="padding:26px; animation-delay:.26s;">
+          <div class="text-amber" style="font-family:var(--font-mono); font-weight:700;">03</div>
+          <h3 class="mt-16" style="font-size:1.1rem;">The board updates live</h3>
+          <p class="mt-8 small">Every submitted answer nudges the leaderboard. Ranks swap, bars grow, confetti falls when it's over.</p>
+        </div>
+      </section>
+    </main>
+
+    <footer class="small muted" style="padding:24px 0 48px;">
+      Online Assessment · built for classrooms that move in real time
+    </footer>
+  </div>
+
+  <script src="js/firebase-config.js"></script>
+  <script>
+    OA.effects.mountDustField(24);
+  </script>
+</body>
+</html>

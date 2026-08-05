@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Results — Online Assessment</title>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <div class="wrap">
+    <header class="topbar">
+      <a class="brand" href="index.html"><span class="dot"></span> Online&nbsp;Assessment</a>
+    </header>
+
+    <main style="max-width:640px; margin:0 auto; padding:20px 0 80px;">
+      <div style="text-align:center;">
+        <span class="live-chip"><span class="ld"></span> Quiz complete</span>
+        <h1 id="quizTitle" class="mt-16" style="font-size:2rem;"></h1>
+        <p id="quizMeta" class="mt-8"></p>
+      </div>
+
+      <div id="podium" class="mt-32" style="display:flex; justify-content:center; align-items:flex-end; gap:14px;"></div>
+
+      <div id="leaderboard" class="mt-32"></div>
+
+      <div class="row mt-48" style="justify-content:center; gap:12px;">
+        <a class="btn btn-primary" href="teacher.html">Start a new quiz</a>
+        <a class="btn btn-ghost" href="index.html">Back home</a>
+      </div>
+    </main>
+  </div>
+
+  <script src="js/firebase-config.js"></script>
+  <script src="js/results.js"></script>
+</body>
+</html>
