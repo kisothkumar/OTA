@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Teacher Dashboard — Online Assessment</title>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <div class="wrap">
+    <header class="topbar">
+      <a class="brand" href="index.html"><span class="dot"></span> Online&nbsp;Assessment</a>
+      <div class="row gap-16">
+        <a class="btn btn-ghost" href="bank.html" style="padding:10px 18px; font-size:.85rem;">Question Bank</a>
+        <span id="statusChip" class="live-chip hidden"><span class="ld"></span> <span id="statusText">Live</span></span>
+      </div>
+    </header>
+
+    <main style="padding-bottom:80px;">
+
+      <!-- ================= BUILD PANEL ================= -->
+      <section id="buildPanel">
+        <h1 class="reveal" style="font-size:2.2rem;">Build your quiz</h1>
+        <p class="reveal mt-8" style="animation-delay:.05s;">Add a few questions, set a timer for each, then generate a room code for your class.</p>
+
+        <div class="card reveal mt-32" style="padding:28px; animation-delay:.1s;">
+          <div class="field">
+            <label for="quizTitle">Quiz title</label>
+            <input id="quizTitle" type="text" placeholder="e.g. Cell Biology — Chapter 4" />
+          </div>
+          <div id="questionsList"></div>
+          <button class="btn btn-ghost" id="addQuestionBtn" type="button">+ Add question</button>
+        </div>
+
+        <!-- ================= QUESTION BANK IMPORT ================= -->
+        <div class="card reveal mt-24" style="padding:24px; animation-delay:.14s;">
+          <div class="row" style="justify-content:space-between; flex-wrap:wrap; gap:10px;">
+            <h3 style="font-size:1.05rem;">Load from question bank</h3>
+            <a class="small text-teal" href="bank.html">Manage bank →</a>
+          </div>
+          <p class="small muted mt-8">Pick a subject you've already built, tick the questions you want, and they'll drop straight into this quiz.</p>
+
+          <div class="field mt-16" style="max-width:320px;">
+            <label for="bankSubjectSelect">Subject</label>
+            <select id="bankSubjectSelect"></select>
+          </div>
+
+          <div id="bankQuestionList" class="stack gap-8 mt-8"></div>
+          <p id="bankEmpty" class="small muted mt-8 hidden">No questions saved for this subject yet.</p>
+
+          <div class="row mt-16" style="justify-content:space-between; align-items:center;">
+            <label class="row gap-8 small"><input type="checkbox" id="bankSelectAll" /> Select all</label>
+            <button class="btn btn-teal" id="bankAddSelectedBtn" type="button" style="padding:10px 20px; font-size:.85rem;">+ Add selected to quiz</button>
+          </div>
+        </div>
+
+        <div class="row mt-32" style="justify-content:flex-end;">
+          <button class="btn btn-primary" id="createSessionBtn" type="button">Generate room code →</button>
+        </div>
+      </section>
+
+      <!-- ================= WAITING ROOM PANEL ================= -->
+      <section id="waitPanel" class="hidden">
+        <div class="card reveal" style="padding:40px; text-align:center;">
+          <p class="muted small" style="text-transform:uppercase; letter-spacing:.1em;">Room code</p>
+          <div id="roomCodeDisplay" class="room-code mt-8"></div>
+          <p class="mt-16 small">Students go to <strong>student.html</strong> and enter this code.</p>
+          <div class="center mt-24">
+            <div class="pulse-orb">
+              <span class="ring"></span><span class="ring"></span><span class="ring"></span><span class="ring"></span>
+              <div class="core"></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card mt-24" style="padding:28px;">
+          <div class="row" style="justify-content:space-between;">
+            <h3>Students joined</h3>
+            <span id="joinCount" class="live-chip"><span class="ld"></span> 0 joined</span>
+          </div>
+          <div id="studentGrid" class="student-grid mt-16"></div>
+          <p id="emptyJoin" class="muted small mt-16">Waiting for the first student to join…</p>
+        </div>
+
+        <div class="row mt-32" style="justify-content:flex-end;">
+          <button class="btn btn-primary" id="startQuizBtn" type="button" disabled>Start quiz</button>
+        </div>
+      </section>
+
+      <!-- ================= LIVE MONITOR PANEL ================= -->
+      <section id="livePanel" class="hidden">
+        <div class="row" style="justify-content:space-between; align-items:flex-start; flex-wrap:wrap; gap:16px;">
+          <div>
+            <p class="muted small" style="text-transform:uppercase; letter-spacing:.1em;">Question <span id="qIndex">1</span> of <span id="qTotal">1</span></p>
+            <h2 id="qTextLive" style="font-size:1.6rem; margin-top:6px; max-width:560px;"></h2>
+          </div>
+          <div id="teacherTimer" class="timer-ring">
+            <svg width="110" height="110">
+              <circle class="track" cx="55" cy="55" r="48"></circle>
+              <circle class="bar" cx="55" cy="55" r="48"></circle>
+            </svg>
+            <div class="num" id="teacherTimerNum">--</div>
+          </div>
+        </div>
+
+        <div class="progress-dots mt-16" id="progressDots"></div>
+
+        <div id="liveOptions" class="stack gap-12 mt-24"></div>
+
+        <div class="card mt-24" style="padding:22px;">
+          <div class="row" style="justify-content:space-between;">
+            <span class="small muted">Answered</span>
+            <span id="answeredCount" class="small text-teal">0 / 0</span>
+          </div>
+        </div>
+
+        <div class="row mt-32" style="justify-content:flex-end; gap:12px;">
+          <button class="btn btn-ghost" id="endQuizBtn" type="button">End quiz</button>
+          <button class="btn btn-primary" id="nextQBtn" type="button">Next question →</button>
+        </div>
+      </section>
+
+    </main>
+  </div>
+
+  <!-- Firebase SDK (only used once you paste real keys into js/firebase-config.js) -->
+  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-database-compat.js"></script>
+  <script src="js/firebase-config.js"></script>
+  <script src="js/teacher.js"></script>
+</body>
+</html>
